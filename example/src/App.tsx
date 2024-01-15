@@ -51,7 +51,7 @@ function Logo({ src }: { src: string }) {
 
 function Code({ children, lang = "js" }: { children: string; lang?: string }) {
   return (
-    <pre className="w-full text-wrap px-3 py-2 text-xs border border-stone-200 rounded-lg bg-white">
+    <pre className="w-full text-wrap px-3 py-2 text-xs border border-stone-200 rounded-lg bg-white overflow-auto">
       <ColorTokens code={children} lang={lang} />
     </pre>
   );
