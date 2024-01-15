@@ -47,7 +47,7 @@ export function Marquee({
           <div
             key={i}
             className={cn(
-              "flex justify-around gap-[1rem] [--gap:1rem] motion-reduce:animate-none shrink-0",
+              "flex justify-around gap-[1rem] [--gap:1rem] shrink-0",
               direction === "left"
                 ? "animate-marquee-left flex-row"
                 : "animate-marquee-up flex-col",

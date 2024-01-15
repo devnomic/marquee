@@ -387,9 +387,4 @@ video {
 .group:hover .group-hover\:\[animation-play-state\:paused\] {
   animation-play-state: paused;
 }
-@media (prefers-reduced-motion: reduce) {
-  .motion-reduce\:animate-none {
-    animation: none;
-  }
-}
 /*# sourceMappingURL=index.css.map */

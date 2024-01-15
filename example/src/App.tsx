@@ -108,6 +108,15 @@ const codeExample5 = `
 </Marquee>
 `.trim();
 
+const codeExample6 = `
+// Respect user accessibility settings
+<Marquee innerClassName="motion-reduce:animate-none">
+  <div>Content 1</div>
+  <div>Content 2</div>
+  <div>Content 3</div>
+</Marquee>
+`.trim();
+
 function App() {
   return (
     <div className="bg-stone-50 w-screen min-h-screen">
@@ -279,6 +288,26 @@ function App() {
         <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
           <Code>{codeExample5}</Code>
+        </div>
+        <hr className="border-stone-200" />
+        <div className="space-y-1">
+          <h3 className="font-semibold">Reduced motion</h3>
+          <div>Disable animation when user device prefers reduced motion.</div>
+          <Marquee className="py-4" innerClassName="motion-reduce:animate-none">
+            {testimonials.map((testimonial, i) => (
+              <TestimonialCard
+                key={i}
+                name={testimonial.name}
+                title={testimonial.title}
+                avatar={testimonial.avatar}
+                content={testimonial.content}
+              />
+            ))}
+          </Marquee>
+        </div>
+        <div className="space-y-1">
+          <h3 className="font-semibold">Code</h3>
+          <Code>{codeExample6}</Code>
         </div>
       </div>
     </div>

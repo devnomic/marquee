@@ -1,7 +1,7 @@
 {
   "name": "@devnomic/marquee",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "A beautiful marquee component for React.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsup",
