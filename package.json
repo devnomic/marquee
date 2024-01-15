@@ -1,5 +1,5 @@
 {
-  "name": "marquee",
+  "name": "@devnomic/marquee",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -8,7 +8,7 @@
     "yalc": "tsup && yalc push"
   },
   "keywords": [],
-  "author": "",
+  "author": "Erick Hartanto",
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^18.2.47",
