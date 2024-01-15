@@ -7,22 +7,20 @@
 [![GitHub release](https://img.shields.io/github/release/devnomic/marquee?include_prereleases=&sort=semver&color=blue)](https://github.com/devnomic/marquee/releases/)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 
-[See In Action](https://marquee.vercel.app)
-
 ## Installation
 
 ```bash
 npm install @devnomic/marquee
 ```
 
-or you can just copy and paste the source into your component ala shadcn ui.
-
 ## Import
 
 ```ts
-import { Marquee } from "marquee";
-import "marquee/dist/index.css";
+import { Marquee } from "@devnomic/marquee";
+import "@devnomic/marquee/dist/index.css";
 ```
+
+or you can skip npm install, and just copy and paste the source code into your component ala shadcn ui.
 
 ## Usage
 

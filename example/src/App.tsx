@@ -1,6 +1,6 @@
+import { Marquee } from "@devnomic/marquee";
+import "@devnomic/marquee/dist/index.css";
 import { ColorTokens } from "code-colors-react";
-import { Marquee } from "marquee";
-import "marquee/dist/index.css";
 import { GithubIcon } from "./components/GithubIcon";
 import {
   TestimonialCard,
@@ -156,7 +156,8 @@ function App() {
           <h2 className="text-lg font-semibold">Installation</h2>
           <Code lang="bash">npm install @devnomic/marquee</Code>
           <div className="text-sm">
-            or you can just copy and paste the source into your component ala{" "}
+            or you can skip npm install, and just copy and paste the source code
+            into your component ala{" "}
             <a className="underline" href="https://ui.shadcn.com/">
               shadcn ui
             </a>
