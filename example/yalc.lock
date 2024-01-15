@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "marquee": {
-      "signature": "e9a1e043383e2e036bd19fdcc3a6c711",
-      "file": true
-    }
-  }
-}

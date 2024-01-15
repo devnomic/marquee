@@ -3109,10 +3109,10 @@ var require_react_jsx_runtime_development = __commonJS({
           }
         }
         var jsx2 = jsxWithValidationDynamic;
-        var jsxs2 = jsxWithValidationStatic;
+        var jsxs = jsxWithValidationStatic;
         exports2.Fragment = REACT_FRAGMENT_TYPE;
         exports2.jsx = jsx2;
-        exports2.jsxs = jsxs2;
+        exports2.jsxs = jsxs;
       })();
     }
   }
@@ -3147,15 +3147,16 @@ function cn(...inputs) {
 // src/index.tsx
 var import_jsx_runtime = __toESM(require_jsx_runtime());
 function Marquee({
+  children,
   direction = "left",
   pauseOnHover = false,
   reverse = false,
   fade = false,
   className,
   innerClassName,
-  children
+  numberOfCopies = 2
 }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
     "div",
     {
       className: cn(
@@ -3167,35 +3168,20 @@ function Marquee({
         maskImage: fade ? `linear-gradient(${direction === "left" ? "to right" : "to bottom"}, transparent 0%, rgba(0, 0, 0, 1.0) 10%, rgba(0, 0, 0, 1.0) 90%, transparent 100%)` : void 0,
         WebkitMaskImage: fade ? `linear-gradient(${direction === "left" ? "to right" : "to bottom"}, transparent 0%, rgba(0, 0, 0, 1.0) 10%, rgba(0, 0, 0, 1.0) 90%, transparent 100%)` : void 0
       },
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          "div",
-          {
-            className: cn(
-              "flex justify-around gap-[1rem] [--gap:1rem] motion-reduce:animate-none shrink-0",
-              direction === "left" ? "animate-marquee-left flex-row" : "animate-marquee-up flex-col",
-              pauseOnHover && "group-hover:[animation-play-state:paused]",
-              reverse && "direction-reverse",
-              innerClassName
-            ),
-            children
-          }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          "div",
-          {
-            className: cn(
-              "flex justify-around gap-[1rem] [--gap:1rem] motion-reduce:animate-none shrink-0",
-              direction === "left" ? "animate-marquee-left flex-row" : "animate-marquee-up flex-col",
-              pauseOnHover && "group-hover:[animation-play-state:paused]",
-              reverse && "direction-reverse",
-              innerClassName
-            ),
-            "aria-hidden": "true",
-            children
-          }
-        )
-      ]
+      children: Array(numberOfCopies).fill(0).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "div",
+        {
+          className: cn(
+            "flex justify-around gap-[1rem] [--gap:1rem] motion-reduce:animate-none shrink-0",
+            direction === "left" ? "animate-marquee-left flex-row" : "animate-marquee-up flex-col",
+            pauseOnHover && "group-hover:[animation-play-state:paused]",
+            reverse && "direction-reverse",
+            innerClassName
+          ),
+          children
+        },
+        i
+      ))
     }
   );
 }
