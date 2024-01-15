@@ -112,21 +112,40 @@ function App() {
   return (
     <div className="bg-stone-50 w-screen min-h-screen">
       <div className="max-w-screen-md mx-auto py-6 px-4 space-y-4">
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex flex-col items-start sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <h1 className="text-2xl font-semibold">Marquee</h1>
             <div className="text-stone-600">
               A beautiful marquee component for React.
             </div>
           </div>
-          <a
-            href="https://github.com/devnomic/marquee"
-            target="_blank"
-            className="bg-black text-sm font-semibold text-white px-2.5 py-1 rounded-md inline-flex items-center hover:bg-black/80 transition-colors"
-          >
-            <GithubIcon className="size-5 mr-1" />
-            Star Us
-          </a>
+          <div className="flex items-center gap-1">
+            <a
+              href="https://x.com/devnomic"
+              target="_blank"
+              className="bg-black text-xs font-semibold text-white px-2.5 py-1 rounded-md inline-flex items-center hover:bg-black/80 transition-colors"
+            >
+              <svg
+                className="size-4 mr-1 shrink-0"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="currentColor"
+                  d="M8 2H1l8.26 11.015L1.45 22H4.1l6.388-7.349L16 22h7l-8.608-11.478L21.8 2h-2.65l-5.986 6.886zm9 18L5 4h2l12 16z"
+                />
+              </svg>
+              @devnomic
+            </a>
+            <a
+              href="https://github.com/devnomic/marquee"
+              target="_blank"
+              className="bg-black text-xs font-semibold text-white px-2.5 py-1 rounded-md inline-flex items-center hover:bg-black/80 transition-colors"
+            >
+              <GithubIcon className="size-4 mr-1" />
+              Github
+            </a>
+          </div>
         </div>
         <div className="py-4">
           <Marquee className="py-2" fade={true}>
