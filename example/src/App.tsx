@@ -1,13 +1,11 @@
 import { ColorTokens } from "code-colors-react";
 import { Marquee } from "marquee";
 import "marquee/dist/index.css";
-
-interface TestimonialProps {
-  name: string;
-  title: string;
-  avatar: string;
-  content: string;
-}
+import { GithubIcon } from "./components/GithubIcon";
+import {
+  TestimonialCard,
+  TestimonialProps,
+} from "./components/TestimonialCard";
 
 const testimonials: TestimonialProps[] = [
   {
@@ -46,21 +44,6 @@ const testimonials: TestimonialProps[] = [
       "Marquee Library has consistently delivered beyond our expectations. It's not just a tool; it's an asset that enhances productivity and creativity in our TypeScript applications.",
   },
 ];
-
-function TestimonialCard({ name, title, avatar, content }: TestimonialProps) {
-  return (
-    <div className="w-80 space-y-3 rounded-lg bg-white px-5 py-3 text-sm shadow-sm">
-      <div className="flex items-center gap-2">
-        <img src={avatar} alt={name} className="size-8 rounded-full" />
-        <div>
-          <div className="font-medium">{name}</div>
-          <div className="text-xs text-stone-600">{title}</div>
-        </div>
-      </div>
-      <div className="whitespace-pre-line text-stone-600">{content}</div>
-    </div>
-  );
-}
 
 function Logo({ src }: { src: string }) {
   return <img src={src} className="h-16 inline-block" />;
@@ -129,22 +112,63 @@ function App() {
   return (
     <div className="bg-stone-50 w-screen min-h-screen">
       <div className="max-w-screen-md mx-auto py-6 px-4 space-y-4">
-        <div>
-          <h1 className="text-2xl font-semibold">Marquee</h1>
-          <div className="text-stone-600">
-            A beautiful marquee component for React and Tailwind.
+        <div className="flex items-center justify-between gap-2">
+          <div>
+            <h1 className="text-2xl font-semibold">Marquee</h1>
+            <div className="text-stone-600">
+              A beautiful marquee component for React.
+            </div>
           </div>
+          <a
+            href="https://github.com/devnomic/marquee"
+            target="_blank"
+            className="bg-black text-sm font-semibold text-white px-2.5 py-1 rounded-md inline-flex items-center hover:bg-black/80 transition-colors"
+          >
+            <GithubIcon className="size-5 mr-1" />
+            Star Us
+          </a>
         </div>
-        <div>
+        <div className="py-4">
+          <Marquee className="py-2" fade={true}>
+            {testimonials.map((testimonial, i) => (
+              <TestimonialCard
+                key={i}
+                name={testimonial.name}
+                title={testimonial.title}
+                avatar={testimonial.avatar}
+                content={testimonial.content}
+              />
+            ))}
+          </Marquee>
+          <Marquee className="py-2" reverse={true} fade={true}>
+            {testimonials.map((testimonial, i) => (
+              <TestimonialCard
+                key={i}
+                name={testimonial.name}
+                title={testimonial.title}
+                avatar={testimonial.avatar}
+                content={testimonial.content}
+              />
+            ))}
+          </Marquee>
+        </div>
+        <div className="space-y-1">
           <h2 className="text-lg font-semibold">Installation</h2>
           <Code lang="bash">npm install @devnomic/marquee</Code>
+          <div className="text-sm">
+            or you can just copy and paste the source into your component ala{" "}
+            <a className="underline" href="https://ui.shadcn.com/">
+              shadcn ui
+            </a>
+            .
+          </div>
         </div>
-        <div>
+        <div className="space-y-1">
           <h3 className="font-semibold">Import</h3>
           <Code>{codeImport}</Code>
         </div>
         <hr className="border-stone-200" />
-        <div>
+        <div className="space-y-1">
           <h3 className="font-semibold">Fade</h3>
           <Marquee className="py-4" fade={true}>
             {testimonials.map((testimonial, i) => (
@@ -158,12 +182,12 @@ function App() {
             ))}
           </Marquee>
         </div>
-        <div>
+        <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
           <Code>{codeExample1}</Code>
         </div>
         <hr className="border-stone-200" />
-        <div>
+        <div className="space-y-1">
           <h3 className="font-semibold">Reverse direction</h3>
           <Marquee className="py-4" reverse={true} fade={true}>
             {testimonials.map((testimonial, i) => (
@@ -177,7 +201,7 @@ function App() {
             ))}
           </Marquee>
         </div>
-        <div>
+        <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
           <Code>{codeExample2}</Code>
         </div>
@@ -197,7 +221,7 @@ function App() {
           <Code>{codeExample3}</Code>
         </div>
         <hr className="border-stone-200" />
-        <div>
+        <div className="space-y-1">
           <h3 className="font-semibold">Vertical</h3>
           <div className="flex justify-center">
             <Marquee className="h-[400px]" direction="up" fade={true}>
@@ -213,12 +237,12 @@ function App() {
             </Marquee>
           </div>
         </div>
-        <div>
+        <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
           <Code>{codeExample4}</Code>
         </div>
         <hr className="border-stone-200" />
-        <div>
+        <div className="space-y-1">
           <h3 className="font-semibold">Custom gap and speed</h3>
           <Marquee
             className="gap-[3rem] [--duration:5s]"
@@ -232,7 +256,7 @@ function App() {
             <Logo src="https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg" />
           </Marquee>
         </div>
-        <div>
+        <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
           <Code>{codeExample5}</Code>
         </div>
