@@ -1,11 +1,12 @@
-# Marquee 🌬️
+<div align="center">
+
+# Marquee <br> 🌬️
 
 > A beautiful marquee components for React.
 
----
+![NPM Version](https://img.shields.io/npm/v/%40devnomic%2Fmarquee?logo=npm)
 
-[![GitHub release](https://img.shields.io/github/release/devnomic/marquee?include_prereleases=&sort=semver&color=blue)](https://github.com/devnomic/marquee/releases/)
-[![License](https://img.shields.io/badge/License-MIT-blue)](#license)
+</div>
 
 ## Installation
 
