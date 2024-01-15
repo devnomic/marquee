@@ -58,8 +58,8 @@ function Code({ children, lang = "js" }: { children: string; lang?: string }) {
 }
 
 const codeImport = `
-import { Marquee } from "marquee";
-import "marquee/dist/index.css";
+import { Marquee } from "@devnomic/marquee";
+import "@devnomic/marquee/dist/index.css"; // if you copy ala shadcn, no need import css.
 `.trim();
 
 const codeExample1 = `
@@ -180,7 +180,7 @@ function App() {
             <a className="underline" href="https://ui.shadcn.com/">
               shadcn ui
             </a>{" "}
-            (don't forget to also copy tailwind config if you do this) .
+            (don't forget to also copy tailwind config if you do this).
           </div>
         </div>
         <div className="space-y-1">
