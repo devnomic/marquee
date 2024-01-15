@@ -160,8 +160,8 @@ function App() {
             into your component ala{" "}
             <a className="underline" href="https://ui.shadcn.com/">
               shadcn ui
-            </a>
-            .
+            </a>{" "}
+            (don't forget to also copy tailwind config if you do this) .
           </div>
         </div>
         <div className="space-y-1">
