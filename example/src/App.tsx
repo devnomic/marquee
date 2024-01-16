@@ -110,7 +110,7 @@ const codeExample5 = `
 
 const codeExample6 = `
 // Respect user accessibility settings
-<Marquee innerClassName="motion-reduce:animate-none">
+<Marquee className="motion-reduce:overflow-auto" innerClassName="motion-reduce:animate-none motion-reduce:first:hidden">
   <div>Content 1</div>
   <div>Content 2</div>
   <div>Content 3</div>
@@ -293,7 +293,10 @@ function App() {
         <div className="space-y-1">
           <h3 className="font-semibold">Reduced motion</h3>
           <div>Disable animation when user device prefers reduced motion.</div>
-          <Marquee className="py-4" innerClassName="motion-reduce:animate-none">
+          <Marquee
+            className="py-4 motion-reduce:overflow-auto"
+            innerClassName="motion-reduce:animate-none motion-reduce:first:hidden"
+          >
             {testimonials.map((testimonial, i) => (
               <TestimonialCard
                 key={i}
