@@ -72,8 +72,8 @@ const codeExample1 = `
 `.trim();
 
 const codeExample2 = `
-// Use reserve props
-<Marquee fade={true} reserve={true}>
+// Use reverse props
+<Marquee fade={true} reverse={true}>
   <div>Content 1</div>
   <div>Content 2</div>
   <div>Content 3</div>
