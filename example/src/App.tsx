@@ -1,6 +1,7 @@
 import { Marquee } from "@devnomic/marquee";
 import "@devnomic/marquee/dist/index.css";
-import { ColorTokens } from "code-colors-react";
+import CodeBlock from "shiki-code-block-react";
+import { transformerCopyButton } from "@selemondev/shiki-transformer-copy-button";
 import { GithubIcon } from "./components/GithubIcon";
 import {
   TestimonialCard,
@@ -49,18 +50,11 @@ function Logo({ src }: { src: string }) {
   return <img src={src} className="h-16 inline-block" />;
 }
 
-function Code({ children, lang = "js" }: { children: string; lang?: string }) {
-  return (
-    <pre className="w-full text-wrap px-3 py-2 text-xs border border-stone-200 rounded-lg bg-white overflow-auto">
-      <ColorTokens code={children} lang={lang} />
-    </pre>
-  );
-}
-
 const codeImport = `
 import { Marquee } from "@devnomic/marquee";
-import "@devnomic/marquee/dist/index.css"; // if you copy ala shadcn, no need import css.
-`.trim();
+// if you copy ala shadcn, no need import css.
+import "@devnomic/marquee/dist/index.css";
+`;
 
 const codeExample1 = `
 // Use fade props
@@ -110,7 +104,8 @@ const codeExample5 = `
 
 const codeExample6 = `
 // Respect user accessibility settings
-<Marquee className="motion-reduce:overflow-auto" innerClassName="motion-reduce:animate-none motion-reduce:first:hidden">
+<Marquee className="motion-reduce:overflow-auto" 
+innerClassName="motion-reduce:animate-none motion-reduce:first:hidden">
   <div>Content 1</div>
   <div>Content 2</div>
   <div>Content 3</div>
@@ -119,7 +114,7 @@ const codeExample6 = `
 
 function App() {
   return (
-    <div className="bg-stone-50 w-screen min-h-screen">
+    <div className="bg-[#eee] w-screen min-h-screen">
       <div className="max-w-screen-md mx-auto py-6 px-4 space-y-4">
         <div className="flex flex-col items-start sm:flex-row sm:items-center justify-between gap-2">
           <div>
@@ -182,7 +177,22 @@ function App() {
         </div>
         <div className="space-y-1">
           <h2 className="text-lg font-semibold">Installation</h2>
-          <Code lang="bash">npm install @devnomic/marquee</Code>
+          <CodeBlock
+            code={"npm install @devnomic/marquee"}
+            lang="bash"
+            theme={{
+              light: "vitesse-light",
+              dark: "vitesse-dark",
+            }}
+            transformers={[
+              transformerCopyButton({
+                duration: 2000,
+                display: "ready",
+                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
+                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
+              }),
+            ]}
+          />
           <div className="text-sm">
             or you can skip npm install, and just copy and paste the source code
             into your component ala{" "}
@@ -194,7 +204,22 @@ function App() {
         </div>
         <div className="space-y-1">
           <h3 className="font-semibold">Import</h3>
-          <Code>{codeImport}</Code>
+          <CodeBlock
+            code={codeImport}
+            lang="javascript"
+            theme={{
+              light: "vitesse-light",
+              dark: "vitesse-dark",
+            }}
+            transformers={[
+              transformerCopyButton({
+                duration: 2000,
+                display: "ready",
+                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
+                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
+              }),
+            ]}
+          />
         </div>
         <hr className="border-stone-200" />
         <div className="space-y-1">
@@ -213,7 +238,22 @@ function App() {
         </div>
         <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
-          <Code>{codeExample1}</Code>
+          <CodeBlock
+            code={codeExample1}
+            lang="javascript"
+            theme={{
+              light: "vitesse-light",
+              dark: "vitesse-dark",
+            }}
+            transformers={[
+              transformerCopyButton({
+                duration: 2000,
+                display: "ready",
+                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
+                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
+              }),
+            ]}
+          />
         </div>
         <hr className="border-stone-200" />
         <div className="space-y-1">
@@ -232,7 +272,22 @@ function App() {
         </div>
         <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
-          <Code>{codeExample2}</Code>
+          <CodeBlock
+            code={codeExample2}
+            lang="javascript"
+            theme={{
+              light: "vitesse-light",
+              dark: "vitesse-dark",
+            }}
+            transformers={[
+              transformerCopyButton({
+                duration: 2000,
+                display: "ready",
+                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
+                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
+              }),
+            ]}
+          />
         </div>
         <hr className="border-stone-200" />
         <div>
@@ -247,7 +302,22 @@ function App() {
         </div>
         <div>
           <h3 className="font-semibold">Code</h3>
-          <Code>{codeExample3}</Code>
+          <CodeBlock
+            code={codeExample3}
+            lang="javascript"
+            theme={{
+              light: "vitesse-light",
+              dark: "vitesse-dark",
+            }}
+            transformers={[
+              transformerCopyButton({
+                duration: 2000,
+                display: "ready",
+                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
+                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
+              }),
+            ]}
+          />
         </div>
         <hr className="border-stone-200" />
         <div className="space-y-1">
@@ -268,7 +338,22 @@ function App() {
         </div>
         <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
-          <Code>{codeExample4}</Code>
+          <CodeBlock
+            code={codeExample4}
+            lang="javascript"
+            theme={{
+              light: "vitesse-light",
+              dark: "vitesse-dark",
+            }}
+            transformers={[
+              transformerCopyButton({
+                duration: 2000,
+                display: "ready",
+                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
+                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
+              }),
+            ]}
+          />
         </div>
         <hr className="border-stone-200" />
         <div className="space-y-1">
@@ -287,7 +372,22 @@ function App() {
         </div>
         <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
-          <Code>{codeExample5}</Code>
+          <CodeBlock
+            code={codeExample5}
+            lang="javascript"
+            theme={{
+              light: "vitesse-light",
+              dark: "vitesse-dark",
+            }}
+            transformers={[
+              transformerCopyButton({
+                duration: 2000,
+                display: "ready",
+                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
+                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
+              }),
+            ]}
+          />
         </div>
         <hr className="border-stone-200" />
         <div className="space-y-1">
@@ -310,7 +410,22 @@ function App() {
         </div>
         <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
-          <Code>{codeExample6}</Code>
+          <CodeBlock
+            code={codeExample6}
+            lang="javascript"
+            theme={{
+              light: "vitesse-light",
+              dark: "vitesse-dark",
+            }}
+            transformers={[
+              transformerCopyButton({
+                duration: 2000,
+                display: "ready",
+                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
+                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
+              }),
+            ]}
+          />
         </div>
       </div>
     </div>
