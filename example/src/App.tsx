@@ -7,7 +7,28 @@ import {
   TestimonialCard,
   TestimonialProps,
 } from "./components/TestimonialCard";
+import { codeImport, codeExample1, codeExample2, codeExample3, codeExample4, codeExample5, codeExample6 } from "./utils/snippets";
 
+const shikiTransformerCopyBtnCSSVariables = `
+:root {
+      --border-color: #e2e2e3;
+      --background-color: #f6f6f7;
+      --hover-background-color: #ffff;
+      --dark-background-color: #202127;
+      --dark-border-color: #2e2e32;
+      --dark-background-color-hover: #1b1b1f;
+      --dark-border-color-hover: #2e2e32;
+      --button-top: 8px;
+      --button-right: 12px;
+      --button-z-index: 3;
+      --button-border-radius: 4px;
+      --button-width: 30px;
+      --button-height: 30px;
+      --button-ready-icon-width: 20px;
+      --button-ready-icon-height: 20px;
+      --button-success-icon-width: 20px;
+      --button-success-icon-height: 20px;
+}`
 const testimonials: TestimonialProps[] = [
   {
     name: "Emily Johnson",
@@ -50,67 +71,27 @@ function Logo({ src }: { src: string }) {
   return <img src={src} className="h-16 inline-block" />;
 }
 
-const codeImport = `
-import { Marquee } from "@devnomic/marquee";
-// if you copy ala shadcn, no need import css.
-import "@devnomic/marquee/dist/index.css";
-`;
-
-const codeExample1 = `
-// Use fade props
-<Marquee fade={true}>
-  <div>Content 1</div>
-  <div>Content 2</div>
-  <div>Content 3</div>
-</Marquee>
-`.trim();
-
-const codeExample2 = `
-// Use reverse props
-<Marquee fade={true} reverse={true}>
-  <div>Content 1</div>
-  <div>Content 2</div>
-  <div>Content 3</div>
-</Marquee>
-`.trim();
-
-const codeExample3 = `
-// Use pauseOnHover props
-<Marquee fade={true} pauseOnHover={true}>
-  <div>Content 1</div>
-  <div>Content 2</div>
-  <div>Content 3</div>
-</Marquee>
-`.trim();
-
-const codeExample4 = `
-// Use direction props
-<Marquee fade={true} direction="up">
-  <div>Content 1</div>
-  <div>Content 2</div>
-  <div>Content 3</div>
-</Marquee>
-`.trim();
-
-const codeExample5 = `
-// Use css vars for gap and duration
-// Default is 1 rem and 40s
-<Marquee className="gap-[3rem] [--duration:5s]" innerClassName="gap-[3rem] [--gap:3rem]" fade={true}>
-  <div>Content 1</div>
-  <div>Content 2</div>
-  <div>Content 3</div>
-</Marquee>
-`.trim();
-
-const codeExample6 = `
-// Respect user accessibility settings
-<Marquee className="motion-reduce:overflow-auto" 
-innerClassName="motion-reduce:animate-none motion-reduce:first:hidden">
-  <div>Content 1</div>
-  <div>Content 2</div>
-  <div>Content 3</div>
-</Marquee>
-`.trim();
+function ReactCodeBlock({ code }: { code: string }) {
+  return (
+    <CodeBlock
+      code={code}
+      lang="javascript"
+      theme={{
+        light: "vitesse-light",
+        dark: "vitesse-dark",
+      }}
+      transformers={[
+        transformerCopyButton({
+          cssVariables: shikiTransformerCopyBtnCSSVariables,
+          duration: 2000,
+          display: "ready",
+          successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
+          copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
+        }),
+      ]}
+    />
+  );
+}
 
 function App() {
   return (
@@ -186,6 +167,7 @@ function App() {
             }}
             transformers={[
               transformerCopyButton({
+                cssVariables: shikiTransformerCopyBtnCSSVariables,
                 duration: 2000,
                 display: "ready",
                 successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
@@ -204,22 +186,7 @@ function App() {
         </div>
         <div className="space-y-1">
           <h3 className="font-semibold">Import</h3>
-          <CodeBlock
-            code={codeImport}
-            lang="javascript"
-            theme={{
-              light: "vitesse-light",
-              dark: "vitesse-dark",
-            }}
-            transformers={[
-              transformerCopyButton({
-                duration: 2000,
-                display: "ready",
-                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
-                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
-              }),
-            ]}
-          />
+          <ReactCodeBlock code={codeImport} />
         </div>
         <hr className="border-stone-200" />
         <div className="space-y-1">
@@ -238,22 +205,7 @@ function App() {
         </div>
         <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
-          <CodeBlock
-            code={codeExample1}
-            lang="javascript"
-            theme={{
-              light: "vitesse-light",
-              dark: "vitesse-dark",
-            }}
-            transformers={[
-              transformerCopyButton({
-                duration: 2000,
-                display: "ready",
-                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
-                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
-              }),
-            ]}
-          />
+          <ReactCodeBlock code={codeExample1} />
         </div>
         <hr className="border-stone-200" />
         <div className="space-y-1">
@@ -272,22 +224,7 @@ function App() {
         </div>
         <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
-          <CodeBlock
-            code={codeExample2}
-            lang="javascript"
-            theme={{
-              light: "vitesse-light",
-              dark: "vitesse-dark",
-            }}
-            transformers={[
-              transformerCopyButton({
-                duration: 2000,
-                display: "ready",
-                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
-                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
-              }),
-            ]}
-          />
+          <ReactCodeBlock code={codeExample2} />
         </div>
         <hr className="border-stone-200" />
         <div>
@@ -302,22 +239,7 @@ function App() {
         </div>
         <div>
           <h3 className="font-semibold">Code</h3>
-          <CodeBlock
-            code={codeExample3}
-            lang="javascript"
-            theme={{
-              light: "vitesse-light",
-              dark: "vitesse-dark",
-            }}
-            transformers={[
-              transformerCopyButton({
-                duration: 2000,
-                display: "ready",
-                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
-                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
-              }),
-            ]}
-          />
+          <ReactCodeBlock code={codeExample3} />
         </div>
         <hr className="border-stone-200" />
         <div className="space-y-1">
@@ -338,22 +260,7 @@ function App() {
         </div>
         <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
-          <CodeBlock
-            code={codeExample4}
-            lang="javascript"
-            theme={{
-              light: "vitesse-light",
-              dark: "vitesse-dark",
-            }}
-            transformers={[
-              transformerCopyButton({
-                duration: 2000,
-                display: "ready",
-                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
-                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
-              }),
-            ]}
-          />
+          <ReactCodeBlock code={codeExample4} />
         </div>
         <hr className="border-stone-200" />
         <div className="space-y-1">
@@ -372,22 +279,7 @@ function App() {
         </div>
         <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
-          <CodeBlock
-            code={codeExample5}
-            lang="javascript"
-            theme={{
-              light: "vitesse-light",
-              dark: "vitesse-dark",
-            }}
-            transformers={[
-              transformerCopyButton({
-                duration: 2000,
-                display: "ready",
-                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
-                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
-              }),
-            ]}
-          />
+          <ReactCodeBlock code={codeExample5} />
         </div>
         <hr className="border-stone-200" />
         <div className="space-y-1">
@@ -410,22 +302,7 @@ function App() {
         </div>
         <div className="space-y-1">
           <h3 className="font-semibold">Code</h3>
-          <CodeBlock
-            code={codeExample6}
-            lang="javascript"
-            theme={{
-              light: "vitesse-light",
-              dark: "vitesse-dark",
-            }}
-            transformers={[
-              transformerCopyButton({
-                duration: 2000,
-                display: "ready",
-                successIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E`,
-                copyIcon: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E`,
-              }),
-            ]}
-          />
+          <ReactCodeBlock code={codeExample6} />
         </div>
       </div>
     </div>
