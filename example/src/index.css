@@ -31,7 +31,7 @@ html.dark .shiki span {
 
 pre {
   z-index: 1;
-  padding: 15px 24px;
+  padding: 10px 24px;
   border-radius: 10px;
   overflow-x: auto;
   -ms-overflow-style: none;
