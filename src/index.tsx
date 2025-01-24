@@ -1,6 +1,16 @@
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import "./global.css";
 import { cn } from "./lib/utils";
+
+export type MarqueeProps = HTMLAttributes<HTMLDivElement> & {
+  children: ReactNode;
+  direction?: "left" | "up";
+  pauseOnHover?: boolean;
+  reverse?: boolean;
+  fade?: boolean;
+  innerClassName?: string;
+  numberOfCopies?: number;
+};
 
 export function Marquee({
   children,
@@ -11,16 +21,8 @@ export function Marquee({
   className,
   innerClassName,
   numberOfCopies = 2,
-}: {
-  children: ReactNode;
-  direction?: "left" | "up";
-  pauseOnHover?: boolean;
-  reverse?: boolean;
-  fade?: boolean;
-  className?: string;
-  innerClassName?: string;
-  numberOfCopies?: number;
-}) {
+  ...rest
+}: MarqueeProps) {
   return (
     <div
       className={cn(
@@ -40,6 +42,7 @@ export function Marquee({
             }, transparent 0%, rgba(0, 0, 0, 1.0) 10%, rgba(0, 0, 0, 1.0) 90%, transparent 100%)`
           : undefined,
       }}
+      {...rest}
     >
       {Array(numberOfCopies)
         .fill(0)
@@ -47,7 +50,7 @@ export function Marquee({
           <div
             key={i}
             className={cn(
-              "flex justify-around gap-[1rem] [--gap:1rem] motion-reduce:animate-none shrink-0",
+              "flex justify-around gap-[1rem] [--gap:1rem] shrink-0",
               direction === "left"
                 ? "animate-marquee-left flex-row"
                 : "animate-marquee-up flex-col",

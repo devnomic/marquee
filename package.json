@@ -1,7 +1,7 @@
 {
   "name": "@devnomic/marquee",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.2",
+  "description": "A beautiful marquee component for React.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsup",
@@ -10,12 +10,14 @@
   "keywords": [],
   "author": "Erick Hartanto",
   "license": "MIT",
-  "devDependencies": {
-    "@types/react": "^18.2.47",
-    "@types/react-dom": "^18.2.18",
-    "autoprefixer": "^10.4.16",
+  "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
     "tailwindcss": "^3.4.1",
     "tailwindcss-animate": "^1.0.7",
     "tsup": "^8.0.1",

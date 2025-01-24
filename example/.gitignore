@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 .yalc/
-.yalc.lock
+yalc.lock
